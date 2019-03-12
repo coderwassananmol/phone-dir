@@ -15,7 +15,6 @@ export default class AddSubscriber extends Component {
    }
 
    onSubmit(event) {
-      localStorage.clear()
       event.preventDefault();
       console.log(this.state.name);
       var arr = JSON.parse(localStorage.getItem("users"));
@@ -29,9 +28,12 @@ export default class AddSubscriber extends Component {
          var item = [];
          item.push(obj);
          localStorage.setItem("users",JSON.stringify(item));
+         console.log("Localstorage is null");
          swal("Good job!", "Subscriber Added", "success");
       } if(arr != null) {
          arr.push(obj);
+         console.log("Localstorage is not null");
+         console.log(arr);
          localStorage.setItem("users", JSON.stringify(arr));
          swal("Good job!", "Subscriber Added", "success");
       } if(localStorage == null) swal("Boo!", "Subscription Failed", "error");
@@ -50,13 +52,13 @@ export default class AddSubscriber extends Component {
                           <div className="form-group">
                              <label className="col-md-4 control-label">Full Name</label>
                              <div className="col-md-8 inputGroupContainer">
-                                <div className="input-group"><span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span><input id="fullName" onChange={(event) => this.setState({name: event.target.value})} name="fullName" placeholder="Full Name" className="form-control"  type="text" /></div>
+                                <div className="input-group"><span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span><input id="fullName" onChange={(event) => this.setState({name: event.target.value})} name="fullName" placeholder="Full Name" className="form-control"  type="text" required/></div>
                              </div>
                           </div>
                           <div className="form-group">
                              <label className="col-md-4 control-label">Email</label>
                              <div className="col-md-8 inputGroupContainer">
-                                <div className="input-group"><span className="input-group-addon"><i className="glyphicon glyphicon-envelope"></i></span><input id="email" onChange={(event) => this.setState({email: event.target.value})} name="email" placeholder="Email" className="form-control" type="text" /></div>
+                                <div className="input-group"><span className="input-group-addon"><i className="glyphicon glyphicon-envelope"></i></span><input id="email" onChange={(event) => this.setState({email: event.target.value})} name="email" placeholder="Email" className="form-control" type="email" required/></div>
                              </div>
                           </div>
                           <div className="form-group">

@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
-import ViewSubs from './viewSubs';
-import AddSubscriber from './addSubscriber';
-import Header from './header';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AddSubscriber from "./addSubscriber";
+import ViewSubs from "./viewSubs";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <ViewSubs />
-      </div>
+      <Router>
+        <div>
+          <div className="topnav">
+            <Link to="/">View Subscribers</Link>
+            <Link to="/add">Add Subscribers</Link>
+          </div>
+          <Route exact path="/" component={ViewSubs} />
+          <Route path="/add" component={AddSubscriber} />
+        </div>
+      </Router>
     );
   }
 }
-
-export default App;
